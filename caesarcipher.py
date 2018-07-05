@@ -1,4 +1,5 @@
-#A simple function which takes a text input and an integer input and transforms the text input via the Caesar cipher method of encryption. It can also decrypt messages which have previously been transformed.
+#A simple function which takes a text input and an integer input and transforms the text input via the Caesar cipher method of encryption. 
+#It can also decrypt messages which have previously been transformed.
 
 prompt = raw_input("Would you like to encrypt or decrypt a message? ")
 
