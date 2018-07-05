@@ -44,6 +44,7 @@ def decrypt_caesar(text, shift):
 text = raw_input("Enter your message: ")
 shift = input("Enter your shift value: ")
 
+#If statement for user choice to encrypt or decrypt.
 if prompt == "Encrypt" or prompt == "encrypt":
     encrypt_caesar(text, shift)
 elif prompt == "Decrypt" or prompt == "decrypt":
