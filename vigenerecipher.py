@@ -1,9 +1,17 @@
-#A function which performs the vigenere encryption algorithm on an input phrase.
+#A function which performs the Vigenere encryption algorithm on an input phrase.
 
 key = raw_input("Please enter the keyword that you would like to use for your encryption: ")
 message = raw_input("Please enter the message that you would like to encrypt: ")
 
-def encrypt_vigenere(key, message):
+def encrypt_vigenere(key, plaintext):
+
+    return vigenere_calc(key, plaintext, True)
+
+def decrypt_vigenere(key, ciphertext):
+    
+    return vigenere_calc(key, ciphertext, False)
+
+def vigenere_calc(key, message, is_encrypt):
 
     #Empty list to host results.
     result = []
@@ -22,7 +30,11 @@ def encrypt_vigenere(key, message):
         if num != (-1):
             #... cycle to the start of 'key'...
             key_index = alphabet_index % len(key)
-            num += letters.find(key[key_index])
+            #... check whether to run the encryption or decryption algorithm.
+            if is_encrypt:
+                num += letters.find(key[key_index])
+            else:
+                num -= letters.find(key[key_index])
             #... and cycle to the start of letters to continue assignment.
             num = num % len(letters)
     
@@ -37,5 +49,14 @@ def encrypt_vigenere(key, message):
     
     #Print all of the list items in 'letters' as a string.
     print "".join(result)
+    
+    return result
 
-encrypt_vigenere(key, message)
+result = encrypt_vigenere(key, message)
+
+prompt = raw_input("Would you like to decrypt a message?  ")
+
+if prompt == "Yes" or prompt == "yes":
+    decrypt_vigenere(key, result)
+else:
+    exit()
