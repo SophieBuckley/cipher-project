@@ -41,11 +41,36 @@ def decrypt_caesar(text, shift):
             result += char
     print result
 
+def bruteforce_caesar(text):
+    
+    letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    result = ""
+
+    for key in range(len(letters)):
+        result = ""
+        text = text.upper()
+        for symbol in text:
+            if symbol in letters:
+                num = letters.find(symbol)
+                num -= key
+                if num < 0:
+                    num += len(letters)
+                result += letters[num]
+            else:
+                result += symbol
+
+        print("Key #%s: %s" % (key, result))
+
 text = raw_input("Enter your message: ")
-shift = input("Enter your shift value: ")
 
 #If statement for user choice to encrypt or decrypt.
 if prompt == "Encrypt" or prompt == "encrypt":
+    shift = input("Enter your shift value: ")
     encrypt_caesar(text, shift)
 elif prompt == "Decrypt" or prompt == "decrypt":
-    decrypt_caesar(text, shift)
+    prompt = raw_input("Do you know the key shift value? ")
+    if prompt == "Yes" or prompt == "yes":
+        shift = input("Enter your shift value: ")
+        decrypt_caesar(text, shift)
+    elif prompt == "No" or prompt == "no":
+        bruteforce_caesar(text)
